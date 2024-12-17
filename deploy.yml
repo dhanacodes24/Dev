@@ -7,13 +7,6 @@
     repo_url: "https://github.com/rhdixit2001/simple-nodejs-app.git"
     branch: "main"
   tasks:
-    - name: Ensure Node.js and npm are installed
-      apt:
-        name:
-          - nodejs
-          - npm
-        state: present
-        update_cache: yes
     - name: Clone the repository
       git:
         repo: "{{ repo_url }}"
