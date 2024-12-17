@@ -1,6 +1,7 @@
 ---
 - name: Deploy Node.js Application
-  hosts: local   # Referring to the app_servers group defined in the inventory file
+  hosts: localhost
+  connection: local
   become: yes
   vars:
     app_dir: "/var/www/simple-nodejs-app"
