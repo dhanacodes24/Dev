@@ -2,6 +2,7 @@
 - name: Deploy Node.js Application
   hosts: localhost
   connection: local
+  become: true
   vars:
     app_dir: "/var/www/simple-nodejs-app"
     repo_url: "https://github.com/rhdixit2001/simple-nodejs-app.git"
