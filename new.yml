@@ -1,0 +1,26 @@
+---
+- name: Copy Files from Source to Destination
+  hosts: localhost
+  connection: local
+  vars:
+    source_dir: "/var/lib/jenkins/workspace/simple-nodejs-app"       # Replace with your source directory
+    dest_dir: "/var/www/simple-nodejs-app"    # Replace with your destination directory
+
+  tasks:
+    - name: Ensure destination directory exists
+      file:
+        path: "{{ dest_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Copy files from source to destination
+      copy:
+        src: "{{ source_dir }}/"
+        dest: "{{ dest_dir }}/"
+        remote_src: yes
+      notify: Print Completion Message
+
+  handlers:
+    - name: Print Completion Message
+      debug:
+        msg: "Files have been successfully copied from {{ source_dir }} to {{ dest_dir }}!"
