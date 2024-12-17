@@ -13,3 +13,27 @@
         dest: "{{ app_dir }}"
         version: "{{ branch }}"
         force: yes
+    - name: Install npm dependencies
+      command: npm install
+      args:
+        chdir: "{{ app_dir }}"
+    - name: Install pm2 globally
+      npm:
+        name: pm2
+        global: yes
+    - name: Start the Node.js application using pm2
+      command: pm2 start app.js --name "simple-nodejs-app"
+      args:
+        chdir: "{{ app_dir }}"
+    - name: Save pm2 process list
+      command: pm2 save
+
+    - name: Set up pm2 to start on reboot
+      command: pm2 startup systemd
+
+    - name: Enable pm2 to start on boot
+      systemd:
+        name: pm2-{{ pm2_user }}
+        enabled: yes
+        state: started
+        daemon_reload: yes
