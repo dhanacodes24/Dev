@@ -4,7 +4,7 @@
   connection: local
   become: true
   vars:
-    app_dir: "/var/www/simple-nodejs-app"
+    app_dir: "/tmp"
     repo_url: "https://github.com/rhdixit2001/simple-nodejs-app.git"
     branch: "main"
   tasks:
