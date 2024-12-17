@@ -7,6 +7,9 @@
     repo_url: "https://github.com/rhdixit2001/simple-nodejs-app.git"
     branch: "main"
   tasks:
-    - name: Print Hello World
-      debug:
-        msg: "Hello, World!"
+    - name: Clone the repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ app_dir }}"
+        version: "{{ branch }}"
+        force: yes
